@@ -1,11 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Royal Orchard Casino</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>const symbols = ["🍒", "🍋", "🍊", "🍇", "🍉", "⭐", "7", "🍏"];
+const symbols = ["🍒", "🍋", "🍊", "🍇", "🍉", "⭐", "7", "🍏"];
 const symbolWeights = {
   "🍒": 2,
   "🍋": 2,
@@ -35,7 +28,6 @@ const spinButton = document.getElementById("spinButton");
 const autoButton = document.getElementById("autoButton");
 const stopButton = document.getElementById("stopButton");
 const historyList = document.getElementById("historyList");
-const noOfSpins = 0;
 const freeSpinCount = document.getElementById("freeSpinCount");
 const freeSpinsBonus = document.getElementById("freeSpinsBonus");
 const multiplierText = document.getElementById("multiplierText");
@@ -45,7 +37,11 @@ const winLineText = document.getElementById("winLineText");
 const jackpotValue = document.getElementById("jackpotValue");
 
 function updateUI() {
-  balanceEl.textContent = balance.toLocaleString(undefined, { style: "currency", currency: "USD" }).replace("$", "");
+  balanceEl.textContent = balance.toLocaleString(undefined, {
+    style: "currency",
+    currency: "USD",
+  }).replace("$", "");
+
   remainingMoneyEl.textContent = "$" + balance.toLocaleString(undefined, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,

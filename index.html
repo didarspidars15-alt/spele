@@ -1,273 +1,274 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="lv">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Royal Orchard Casino</title>
+  <title>Spēles pogas varianti</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .start-screen {
+      max-width: 520px;
+      margin: 80px auto;
+      padding: 32px 24px;
+      border-radius: 20px;
+      background: rgba(7, 19, 15, 0.7);
+      border: 1px solid rgba(245, 221, 170, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      text-align: center;
+    }
+
+    .start-screen h1 {
+      margin-bottom: 24px;
+      color: #eafaf1;
+    }
+
+    .variant-box {
+      margin: 24px 0;
+    }
+
+    .variant-box h2 {
+      color: #eafaf1;
+      margin-bottom: 12px;
+    }
+
+    .start-screen button {
+      cursor: pointer;
+      padding: 0.9rem 1.6rem;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: 1px solid #f7d37a;
+      background: linear-gradient(180deg, #ffe8aa, #f7d37a);
+      color: #07150e;
+      font-weight: 700;
+    }
+
+    .start-screen button:hover {
+      filter: brightness(1.06);
+    }
+
+    #atbilde {
+      margin-top: 18px;
+      color: #aabca2;
+      min-height: 24px;
+    }
+  </style>
 </head>
 <body>
-  <div class="app-shell">
+  <div id="startScreen" class="start-screen">
+    <h1>Divi spēles pogas varianti</h1>
+
+    <section class="variant-box">
+      <h2>B variants</h2>
+      <button id="startGameButton" type="button">Sākt spēli</button>
+    </section>
+
+    <p id="atbilde">Izmēģini abas pogas.</p>
+  </div>
+
+  <div id="gameShell" class="app-shell" hidden>
     <aside class="sidebar">
       <div class="brand-panel">
         <div class="brand-wrap">
           <div class="brand-icon">
-            <svg viewBox="0 0 40 40" class="brand-svg" aria-label="Royal Orchard">
-              <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2" />
-              <path d="M20 2 C28 14, 27 25, 20 35 C13 25, 12 14, 20 2 Z" fill="currentColor" opacity=".92" />
-              <path d="M20 7 C22 14, 20 16, 18 20 C21 22, 24 21, 26 17" fill="none" stroke="#fff" stroke-width="2" />
+            <svg class="brand-svg" viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M22 38 L32 18 L42 38 Z" fill="currentColor" opacity="0.9"/>
+              <circle cx="32" cy="40" r="6" fill="currentColor"/>
             </svg>
           </div>
           <div class="brand-text">
-            <span class="brand-kicker">ROYAL</span>
-            <span class="brand-name">ORCHARD</span>
+            <span class="brand-kicker">CASINO</span>
+            <span class="brand-name">ROYAL</span>
           </div>
         </div>
       </div>
 
-      <section class="wallet-card">
+      <div class="wallet-card">
         <div class="wallet-top">
-          <span class="wallet-label">BALANCE</span>
-          <span class="wallet-status">
-            <span class="status-dot"></span>
-            ONLINE
-          </span>
+          <span class="wallet-label">Balance</span>
+          <span class="wallet-status"><span class="status-dot"></span>ONLINE</span>
         </div>
-        <div class="wallet-amount">
-          <span class="currency">$</span><span id="balance">2500.00</span>
-        </div>
+        <div class="wallet-amount"><span class="currency">$</span><span id="balance">2500</span></div>
         <div class="wallet-summary">
-          <span class="wallet-summary-label">Player</span>
-          <span class="wallet-summary-value">VIP-092</span>
+          <div>
+            <div class="wallet-summary-label">REMAINING</div>
+            <div class="wallet-summary-value" id="remainingMoney">$2500.00</div>
+          </div>
+          <div>
+            <div class="wallet-summary-label">EARNED</div>
+            <div class="wallet-summary-value" id="moneyEarned">+$0.00</div>
+          </div>
         </div>
-      </section>
+      </div>
 
-      <section class="stake-card">
+      <div class="stake-card">
         <div class="stake-head">
-          <span class="panel-label">Stake Per Game</span>
+          <span class="stake-head panel-label">Stake</span>
+          <span class="wallet-status">LIVE</span>
         </div>
         <div class="stake-control">
-          <button class="round-control" id="decreaseStake" aria-label="Decrease stake">−</button>
+          <button id="decreaseStake" class="round-control" type="button">−</button>
           <div class="stake-input-wrap">
             <span class="coin-symbol">$</span>
-            <input type="number" id="stake" min="1" max="500" value="25" step="1" />
+            <input id="stake" type="number" min="1" max="500" value="25" />
           </div>
-          <button class="round-control" id="increaseStake" aria-label="Increase stake">+</button>
+          <button id="increaseStake" class="round-control" type="button">+</button>
         </div>
         <div class="stake-presets">
-          <button class="preset-chip" data-stake="10">10</button>
-          <button class="preset-chip" data-stake="25">25</button>
-          <button class="preset-chip" data-stake="50">50</button>
-          <button class="preset-chip" data-stake="100">100</button>
+          <button class="preset-chip" type="button" data-stake="10">10</button>
+          <button class="preset-chip" type="button" data-stake="25">25</button>
+          <button class="preset-chip" type="button" data-stake="50">50</button>
+          <button class="preset-chip" type="button" data-stake="100">100</button>
         </div>
-      </section>
+      </div>
 
-      <section class="account-card">
+      <div class="account-card">
         <div class="mini-bars">
-          <div class="mini-bar" style="height:40%;"></div>
-          <div class="mini-bar" style="height:60%;"></div>
-          <div class="mini-bar" style="height:48%;"></div>
-          <div class="mini-bar" style="height:72%;"></div>
-          <div class="mini-bar" style="height:33%;"></div>
+          <div class="mini-bar" style="height: 30%"></div>
+          <div class="mini-bar" style="height: 48%"></div>
+          <div class="mini-bar" style="height: 62%"></div>
+          <div class="mini-bar" style="height: 72%"></div>
+          <div class="mini-bar" style="height: 56%"></div>
+          <div class="mini-bar" style="height: 90%"></div>
         </div>
         <div class="account-details">
-          <span class="account-label">Casino Level</span>
+          <div class="account-label">Account</div>
           <div class="account-level">
-            <span class="level-name">Gold Club</span>
-            <span class="level-rank">LV. 12</span>
+            <span class="level-name">Gold</span>
+            <span class="level-rank">LVL 7</span>
           </div>
         </div>
-      </section>
+      </div>
     </aside>
 
     <main class="game-panel">
-      <section class="game-top">
+      <div class="game-top">
         <div class="game-title-wrap">
-          <span class="section-tag">FRUIT CASINO</span>
+          <span class="section-tag">Bonus</span>
           <h1>Royal Orchard</h1>
         </div>
         <div class="jackpot-wrap">
-          <span class="jackpot-label">JACKPOT</span>
-          <span class="jackpot-value" id="jackpotValue">$50,000</span>
+          <span class="jackpot-label">Jackpot</span>
+          <span id="jackpotValue" class="jackpot-value">$7500</span>
         </div>
-      </section>
+      </div>
 
-      <section class="slot-frame">
-        <section class="machine-head">
+      <div class="slot-frame">
+        <div class="machine-head">
           <div class="machine-left">
-            <span class="machine-chip">LINE 01</span>
-            <span class="machine-chip">5 REELS</span>
+            <span class="machine-chip">MULTIPLIER</span>
+            <span id="multiplierText" class="machine-chip">x1</span>
           </div>
           <div class="machine-right">
-            <button class="icon-button" id="soundButton" aria-label="Sound">
+            <button class="icon-button" type="button" aria-label="sound">
               <span class="sound-icon">♬</span>
             </button>
           </div>
-        </section>
+        </div>
 
-        <section class="slot-grid-wrap">
-          <div class="slot-grid" id="slotGrid">
+        <div class="slot-grid-wrap">
+          <div class="slot-grid">
             <div class="slot-row">
-              <div class="slot-cell"><span class="slot-symbol" id="slot-00">🍒</span></div>
-              <div class="slot-cell"><span class="slot-symbol" id="slot-01">🍋</span></div>
-              <div class="slot-cell"><span class="slot-symbol" id="slot-02">🍊</span></div>
-              <div class="slot-cell"><span class="slot-symbol" id="slot-03">🍇</span></div>
-              <div class="slot-cell"><span class="slot-symbol" id="slot-04">🍏</span></div>
+              <div class="slot-cell"><span id="slot-00" class="slot-symbol">🍒</span></div>
+              <div class="slot-cell"><span id="slot-01" class="slot-symbol">🍋</span></div>
+              <div class="slot-cell"><span id="slot-02" class="slot-symbol">🍊</span></div>
+              <div class="slot-cell"><span id="slot-03" class="slot-symbol">🍇</span></div>
+              <div class="slot-cell"><span id="slot-04" class="slot-symbol">🍏</span></div>
             </div>
             <div class="slot-row">
-              <div class="slot-cell"><span class="slot-symbol" id="slot-10">🍇</span></div>
-              <div class="slot-cell"><span class="slot-symbol" id="slot-11">🍒</span></div>
-              <div class="slot-cell"><span class="slot-symbol" id="slot-12">🍉</span></div>
-              <div class="slot-cell"><span class="slot-symbol" id="slot-13">⭐</span></div>
-              <div class="slot-cell"><span class="slot-symbol" id="slot-14">7</span></div>
+              <div class="slot-cell"><span id="slot-10" class="slot-symbol">🍇</span></div>
+              <div class="slot-cell"><span id="slot-11" class="slot-symbol">🍒</span></div>
+              <div class="slot-cell"><span id="slot-12" class="slot-symbol">🍉</span></div>
+              <div class="slot-cell"><span id="slot-13" class="slot-symbol">⭐</span></div>
+              <div class="slot-cell"><span id="slot-14" class="slot-symbol">7</span></div>
             </div>
             <div class="slot-row">
-              <div class="slot-cell"><span class="slot-symbol" id="slot-20">🍏</span></div>
-              <div class="slot-cell"><span class="slot-symbol" id="slot-21">⭐</span></div>
-              <div class="slot-cell"><span class="slot-symbol" id="slot-22">🍋</span></div>
-              <div class="slot-cell"><span class="slot-symbol" id="slot-23">🍊</span></div>
-              <div class="slot-cell"><span class="slot-symbol" id="slot-24">🍒</span></div>
+              <div class="slot-cell"><span id="slot-20" class="slot-symbol">🍏</span></div>
+              <div class="slot-cell"><span id="slot-21" class="slot-symbol">⭐</span></div>
+              <div class="slot-cell"><span id="slot-22" class="slot-symbol">🍋</span></div>
+              <div class="slot-cell"><span id="slot-23" class="slot-symbol">🍊</span></div>
+              <div class="slot-cell"><span id="slot-24" class="slot-symbol">🍒</span></div>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section class="payline-area">
+        <div class="payline-area">
           <div class="payline-strip">
-            <span class="payline-label active">01</span>
-            <span class="payline-label">02</span>
-            <span class="payline-label">03</span>
-            <span class="payline-label">04</span>
-            <span class="payline-label">05</span>
+            <div class="payline-label active">1</div>
+            <div class="payline-label">2</div>
+            <div class="payline-label">3</div>
           </div>
           <div class="win-status">
-            <span class="win-label">Winning Line</span>
-            <span class="win-line" id="winLineText">PAYLINE 01</span>
+            <span class="win-label">Win line</span>
+            <span id="winLineText" class="win-line">PAYLINE 01</span>
           </div>
-        </section>
+        </div>
 
-        <section class="result-bars">
+        <div class="result-bars">
           <div class="result-card">
-            <span class="stats-label">MONEY EARNED</span>
-            <span class="stats-value win-amount" id="moneyEarned">+$0.00</span>
-          </div>
-          <div class="result-card">
-            <span class="stats-label">REMAINING MONEY</span>
-            <span class="stats-value" id="remainingMoney">$2500.00</span>
+            <span class="stats-label">Free spins</span>
+            <span id="freeSpinCount" class="stats-value bonus-value">0</span>
           </div>
           <div class="result-card">
-            <span class="stats-label">FREE SPINS</span>
-            <span class="stats-value bonus-value" id="freeSpinCount">0</span>
+            <span class="stats-label">Bonus</span>
+            <span id="bonusText" class="stats-value bonus-value">READY</span>
           </div>
-        </section>
+          <div class="result-card">
+            <span class="stats-label">Earned</span>
+            <span id="freeSpinsBonus" class="stats-value win-amount">$0</span>
+          </div>
+        </div>
 
-        <section class="control-strip">
-          <button class="primary-button" id="spinButton">
-            <span class="button-icon">✦</span>
-            <span class="button-text">SPIN</span>
-          </button>
-          <button class="secondary-button" id="autoButton">
-            <span class="button-icon">⟳</span>
-            <span class="button-text">AUTO SPIN</span>
-          </button>
-          <button class="secondary-button" id="stopButton">
-            <span class="button-icon">■</span>
-            <span class="button-text">STOP</span>
-          </button>
-        </section>
+        <div class="control-strip">
+          <button id="spinButton" class="primary-button" type="button"><span class="button-icon">✦</span>SPIN</button>
+          <button id="autoButton" class="secondary-button" type="button"><span class="button-text">AUTO SPIN</span></button>
+          <button id="stopButton" class="secondary-button" type="button">STOP</button>
+        </div>
 
-        <section class="bonus-status">
+        <div class="bonus-status">
           <div class="bonus-row">
-            <span class="bonus-label">BONUS</span>
-            <span class="bonus-code" id="bonusText">READY</span>
+            <span class="bonus-label">Bonus meter</span>
+            <span class="bonus-code">BOOST</span>
           </div>
-          <div class="bonus-meter">
-            <div class="bonus-meter-fill" id="bonusMeter"></div>
+          <div id="bonusMeter" class="bonus-meter">
+            <div class="bonus-meter-fill" style="width: 0%"></div>
           </div>
-        </section>
-      </section>
+        </div>
+      </div>
     </main>
 
     <aside class="right-panel">
-      <section class="right-panel-card">
+      <div class="right-panel-card">
         <div class="right-panel-head">
-          <span class="panel-label">GAME HISTORY</span>
-          <span class="panel-link">LOG</span>
+          <span class="panel-link">History</span>
+          <span class="panel-link">Last 6</span>
         </div>
-        <div class="history-list" id="historyList">
-          <div class="history-row">
-            <span class="history-line">Spin 010</span>
-            <span class="history-win">+25</span>
-          </div>
-          <div class="history-row">
-            <span class="history-line">Spin 009</span>
-            <span class="history-win">+75</span>
-          </div>
-          <div class="history-row">
-            <span class="history-line">Spin 008</span>
-            <span class="history-lose">-25</span>
-          </div>
-          <div class="history-row">
-            <span class="history-line">Spin 007</span>
-            <span class="history-win">+50</span>
-          </div>
-        </div>
-      </section>
+        <div id="historyList" class="history-list"></div>
+      </div>
 
-      <section class="right-panel-card">
+      <div class="right-panel-card">
         <div class="right-panel-head">
-          <span class="panel-label">PAY TABLE</span>
-          <span class="panel-link">FRUIT</span>
+          <span class="panel-link">Payout</span>
+          <span class="panel-link">Table</span>
         </div>
         <div class="pay-table">
-          <div class="pay-row">
-            <span class="pay-symbol">🍒</span>
-            <span class="pay-name">Cherry</span>
-            <span class="pay-multiplier">x2</span>
-          </div>
-          <div class="pay-row">
-            <span class="pay-symbol">🍋</span>
-            <span class="pay-name">Lemon</span>
-            <span class="pay-multiplier">x3</span>
-          </div>
-          <div class="pay-row">
-            <span class="pay-symbol">🍊</span>
-            <span class="pay-name">Orange</span>
-            <span class="pay-multiplier">x4</span>
-          </div>
-          <div class="pay-row">
-            <span class="pay-symbol">🍇</span>
-            <span class="pay-name">Grape</span>
-            <span class="pay-multiplier">x5</span>
-          </div>
-          <div class="pay-row">
-            <span class="pay-symbol">⭐</span>
-            <span class="pay-name">Star</span>
-            <span class="pay-multiplier">x10</span>
-          </div>
+          <div class="pay-row"><span class="pay-symbol">🍒</span><span class="pay-name">Cherry</span><span class="pay-multiplier">x2</span></div>
+          <div class="pay-row"><span class="pay-symbol">🍋</span><span class="pay-name">Lemon</span><span class="pay-multiplier">x2</span></div>
+          <div class="pay-row"><span class="pay-symbol">🍊</span><span class="pay-name">Orange</span><span class="pay-multiplier">x2</span></div>
+          <div class="pay-row"><span class="pay-symbol">🍇</span><span class="pay-name">Grape</span><span class="pay-multiplier">x2</span></div>
+          <div class="pay-row"><span class="pay-symbol">⭐</span><span class="pay-name">Star</span><span class="pay-multiplier">x4</span></div>
+          <div class="pay-row"><span class="pay-symbol">7</span><span class="pay-name">Lucky 7</span><span class="pay-multiplier">x3</span></div>
         </div>
-      </section>
-
-      <section class="right-panel-card">
-        <div class="right-panel-head">
-          <span class="panel-label">BONUS</span>
-          <span class="panel-link">SPINS</span>
-        </div>
-        <div class="bonus-card">
-          <span class="bonus-detail">
-            <span class="bonus-detail-label">Free Spins</span>
-            <span class="bonus-detail-value" id="freeSpinsBonus">0</span>
-          </span>
-          <span class="bonus-detail">
-            <span class="bonus-detail-label">Multiplier</span>
-            <span class="bonus-detail-value" id="multiplierText">x1</span>
-          </span>
-        </div>
-      </section>
+      </div>
     </aside>
   </div>
 
   <script src="script.js"></script>
-</body>
-</html>
 </body>
 </html>
