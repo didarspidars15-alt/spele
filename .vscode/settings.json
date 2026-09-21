@@ -1,0 +1,14 @@
+{
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 200,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "css.validate": true,
+  "html.validate": true,
+  "javascript.validate.enable": true,
+  "liveServer.settings.port": 5500,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true
+  }
+}
