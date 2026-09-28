@@ -18,6 +18,10 @@ let autoTimer = null;
 let spinCount = 1;
 let currentBonusMeter = 0;
 
+const startGameButton = document.getElementById("startGameButton");
+const gameShell = document.getElementById("gameShell");
+const startScreen = document.getElementById("startScreen");
+const atbilde = document.getElementById("atbilde");
 const balanceEl = document.getElementById("balance");
 const remainingMoneyEl = document.getElementById("remainingMoney");
 const moneyEarnedEl = document.getElementById("moneyEarned");
@@ -35,6 +39,16 @@ const bonusText = document.getElementById("bonusText");
 const bonusMeter = document.getElementById("bonusMeter");
 const winLineText = document.getElementById("winLineText");
 const jackpotValue = document.getElementById("jackpotValue");
+
+if (startGameButton && gameShell && startScreen) {
+  startGameButton.addEventListener("click", () => {
+    if (atbilde) {
+      atbilde.textContent = "Spēle sākta!";
+    }
+    startScreen.hidden = true;
+    gameShell.hidden = false;
+  });
+}
 
 function updateUI() {
   balanceEl.textContent = balance.toLocaleString(undefined, {
