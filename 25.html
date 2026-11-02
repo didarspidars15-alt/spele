@@ -1,35 +1,38 @@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="lv">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bolt Food Delivery Pro Max — spēles skaņas</title>
+<title>Bolt Food Delivery Pro Max</title>
 <style>
-body { font-family: Arial, sans-serif; max-width: 680px; margin: 24px auto; padding: 16px; line-height: 1.6; }
-button, input { font: inherit; padding: 10px; margin: 4px; }
-button { cursor: pointer; }
-img { max-width: 100%; height: auto; }
-[hidden] { display: none !important; }
-body { background-color: #f4efff; color: #17212b; }
-button { background-color: #245b91; color: white; border: 0; border-radius: 8px; }
+body{font-family:Arial,sans-serif;max-width:680px;margin:24px auto;padding:16px;line-height:1.6;background:#f4efff;color:#222}
+h1{text-align:center;color:#222}
+.noteikumi{background:#f1f5f9;padding:12px;border-radius:12px;margin:16px 0}
+.laukums{width:360px;padding:12px;border:2px solid #94a3b8;background:#f8fafc;box-sizing:border-box;margin:20px auto}
+button{background:#245b91;color:#fff;border:0;border-radius:8px;padding:10px 16px;cursor:pointer}
+img,audio{max-width:100%}
+#punkti{font-weight:bold}
 </style>
 </head>
 <body>
 <h1>Bolt Food Delivery Pro Max</h1>
-<p>Atrast kur āgenskalnā piegādāt ēdienu.</p>
-<img src="atteli/varonisarsomu.png" alt="Brūnais Draugs" width="128">
-<p>Spēles skaņa:</p>
+<p>Palīdzi kurjeram atrast piegādes vietu Āgenskalnā.</p>
+<section class="noteikumi">
+<h2>Noteikumi</h2>
+<p>Nospiežot pogu, katru reizi iegūsti vienu punktu.</p>
+<p>Skaņas josla atskaņo klikšķi; nākotnē var pievienot uzvaras efektu vai jaunus līmeņus.</p>
+</section>
+<div class="laukums">
+<h2>Spēles laukums</h2>
+<img src="atteli/varonis.png" alt="Bolt Food kurjers meklē piegādes vietu" width="128">
+<p>Skaņas efekts palīdz just, ka piegāde notiek.</p>
 <audio controls src="skanas/klikskis.wav"></audio>
 <p id="punkti">Punkti: 0</p>
-<button onclick="savakt()">Piekļūsti tuvāk piegādes vietai.</button>
+<button onclick="savakt()">Savākt punktu</button>
+</div>
 <script>
-// Gatava poga. Šajā tēmā mācies noformēt lapu un sakārtot failus.
-let punkti = 0;
-function savakt() {
-  punkti = punkti + 1;
-  document.getElementById("punkti").textContent = "Punkti: " + punkti;
-}
+let punkti=0;
+function savakt(){punkti++;document.getElementById("punkti").textContent="Punkti: "+punkti}
 </script>
 </body>
 </html>
